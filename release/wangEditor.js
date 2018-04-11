@@ -4254,7 +4254,7 @@ UploadImg.prototype = {
                                 return;
                             }
                         }
-                        if (!hooks.customInsert && result.errno != '0') {
+                        if (!hooks.customInsert) {
                             // hook - fail
                             if (hooks.fail && typeof hooks.fail === 'function') {
                                 hooks.fail(xhr, editor, result);
@@ -4281,7 +4281,7 @@ UploadImg.prototype = {
 
                 // hook - before
                 if (hooks.before && typeof hooks.before === 'function') {
-                    var beforeResult = hooks.before(formdata, xhr, editor, resultFiles);
+                    var beforeResult = hooks.before(formdata, xhr, editor, file);
                     if (beforeResult && (typeof beforeResult === 'undefined' ? 'undefined' : _typeof(beforeResult)) === 'object') {
                         if (beforeResult.prevent) {
                             // 如果返回的结果是 {prevent: true, msg: 'xxxx'} 则表示用户放弃上传
